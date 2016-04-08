@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>El Niño brings early blooms to Death Valley</title>
+    <meta name="description" content="Video Sphere — A-Frame">
+   <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+        
+
+  </head>
+  <body>
+    <a-scene>
+
+
+      <a-entity camera="" look-controls="enabled: true" wasd-controls="enabled: true" rotation="-30 -270 60" position="0 0 0">
+        <a-entity 
+        position="0 0 -0.5" 
+        geometry="primitive: ring; radiusOuter: 0.010; radiusInner: 0.007" 
+        material="color: #4CC3D9; shader: flat; transparent: true; opacity: 0.5" 
+        cursor="fuse: true; maxDistance: 500; timeout: 1000" raycaster=""></a-entity>
+      </a-entity>
+
+       <a-videosphere src="shot8.webm" id="above" autoplay="true" loop="true" rotation="0 -40 0"></a-videosphere>
+
+      <a-image src="rocksperspective.png" id="more" width="2" height="1.25" position="-5 -1.5 -5" rotation="0 30 0"  scale="1 1 1" visible="true"></a-image>
+
+      <a-image src="above.png" id="back" width="2" height="1.25" position="0 -1.5 -5" rotation="-5 0 0"  scale="1 1 1" visible="false"></a-image>
+
+      <a-image src="desertgoldoverlay.png" id="desertgoldtrigger" width="3" height="3" position="-11 -3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible ="true"></a-image>
+
+      <a-image src="desertgoldinfo.png" id="desertgoldinfo" width="13" height="8" position="-12 3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible="false"></a-image>
+
+
+    </a-scene>
+
+      <script>
+
+   
+        var more = document.querySelector('#more');
+        var above = document.querySelector('#above');
+        var desertgoldtrigger = document.querySelector('#desertgoldtrigger');
+        var back = document.querySelector('#back');
+
+
+// when you toggle to rock by calling “moreClick”, you replace “moreClick” with “cancelMoreClick” which will toggle you back to the main scene.
+
+        function changeVideo() {
+          above.setAttribute('src', 'shot13.webm');
+          more.setAttribute('visible', 'false');
+          back.setAttribute('visible','true');
+          console.log('mouseenter!');
+          
+          more.removeEventListener('click', moreClick);
+          more.addEventListener('click', cancelMoreClick);          
+        }
+
+        function cancelChangevideo() {
+          more.removeEventListener('click', cancelMoreClick);
+          more.addEventListener('click', moreClick);          
+        }
+
+//hover over MORE replaces ABOVE with SHOT13 below videosphere and change the icon to go back to ABOVE button. Should it be hide button and show new button? Probably.
+        more.addEventListener('click', moreClick);
+
+//backbutton
+
+        back.addEventListener('click', function () {
+          above.setAttribute('src', 'shot8.webm');
+        })
+
+//hotspot for information
+        desertgoldtrigger.addEventListener('click', function () {
+          desertgoldtrigger.setAttribute('opacity','0.8');
+          desertgoldinfo.setAttribute('visible','true');
+        })
+
+
+
+
+      </script>
+
+
+
+
+
+
+</body>

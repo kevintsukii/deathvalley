@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Video Sphere</title>
+    <meta name="description" content="The Bloom and El Niño — Death Valley">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="description" content="360-degree photosphere viewer with navigation">
+    <meta name="keywords" content="360-degree photosphere viewer vr webvr virtual reality">
+    <meta name="author" content="DeathValleyVR">
+
+    <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+        
+
+  </head>
+  <body>
+    <a-scene>
+
+
+      <a-entity camera="" look-controls="enabled: true" wasd-controls="enabled: true" rotation="0 0 0" position="0 0 0">
+        <a-entity 
+        position="0 0 -0.5" 
+        geometry="primitive: ring; radiusOuter: 0.010; radiusInner: 0.007" 
+        material="color: #4CC3D9; shader: flat; transparent: true; opacity: 0.5" 
+        cursor="fuse: true; maxDistance: 500; timeout: 1000" raycaster=""></a-entity>
+      </a-entity>
+
+    
+
+       <a-videosphere src="shot8.webm" autoplay="true" loop="true" rotation="0 0 0"></a-videosphere>
+
+<!--        <img id="more" src="more.png" width="12.5" height="12.5" position ="0 3.5 -9" rotation="0 -18 0" opacity="0.8"> -->
+      
+      <a-image src="more.png" id="more" width="10" height="5" position="-2 1.2 1.2" scale="0.2 0.2 0.2"></a-image>
+
+      <a-cube id="cube" position="0 3.5 -20" rotation="30 30 0" width="2" depth="2" height="2" color="#F16745" roughness="0.8">
+
+        <a-mouseenter scale="3 1 1" color="#FFC65D"></a-mouseenter>
+        <a-mouseenter target="#shadow" scale="3 2 2"></a-mouseenter>
+
+        <a-mouseleave scale="1 1 1" color="#F16745"></a-mouseleave>
+        <a-mouseleave target="#shadow" scale="2 2 2"></a-mouseleave>
+
+      </a-cube>
+
+      
+      <a-entity id="thing" position="0 10 -20" geometry="primitive: box" material="color: blue"></a-entity>
+      <a-entity id="pop" position="10 10 -20" geometry="primitive: box" material="color: yellow" visible="false"></a-entity>
+
+
+    </a-scene>
+
+      <script>
+
+        var thing = document.querySelector('#thing');
+        var pop = document.querySelector('#pop');
+
+        thing.addEventListener('mouseenter', function () {
+          this.setAttribute('material', 'color', 'red');
+          pop.setAttribute('visible', 'true');
+          console.log('Mouse enter!');
+        });
+
+        thing.addEventListener('mouseleave', function () {
+          this.setAttribute('material', 'color', 'blue');
+          pop.setAttribute('visible', 'false');
+          console.log('Mouse leave!');
+        });
+
+        var more = document.querySelector('#more');
+
+
+
+      </script>
+
+
+
+
+
+
+</body>

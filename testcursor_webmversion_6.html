@@ -1,0 +1,129 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>El Niño brings early blooms to Death Valley</title>
+    <meta name="description" content="Video Sphere — A-Frame">
+   <script src="https://aframe.io/releases/latest/aframe.min.js">
+
+   </script>
+        
+
+  </head>
+  <body>
+    <a-scene>
+
+
+      <a-entity camera="" look-controls="enabled: true" wasd-controls="enabled: true" rotation="-30 -270 60" position="0 0 0">
+        <a-entity 
+        position="0 0 -0.5" 
+        geometry="primitive: ring; radiusOuter: 0.010; radiusInner: 0.007" 
+        material="color: #4CC3D9; shader: flat; transparent: true; opacity: 0.5" 
+        cursor="fuse: true; maxDistance: 500; timeout: 1000" raycaster=""></a-entity>
+      </a-entity>
+
+<!-- TITLE CARD -->
+
+<!--       <a-image src="img/hide_button.png" id="hide" width="3" height="1" position="0 -2.2 -5" rotation="0 0 0"  scale=".5 .5 .5" visible="true"></a-image> -->
+
+      <a-image src="img/title_card.png" id="title" width="14" height="8" position="0 0 -8" rotation="0 0 0"  scale="1 1 1" visible="true"></a-image>
+
+      <a-videosphere src="video/shot8.webm" id="above" autoplay="true" loop="true" rotation="0 -40 0"></a-videosphere>
+
+      <a-image src="img/rocksperspective.png" id="rock" width="2" height="1.25" position="-10 -1.5 -4" rotation="0 60 0"  scale="1 1 1" visible="true"></a-image>
+
+      <a-image src="img/above.png" id="back" width="2" height="1.25" position="0 -1.5 -5" rotation="-5 0 0"  scale="1 1 1" visible="false"></a-image>
+
+      <a-entity><a-image src="img/highlighter.png" id="desertgoldtrigger" width="3" height="3" position="-11 -3 8" rotation="10 130 0"
+          scale="1 1 1"
+          opacity="1"
+          visible="true">
+
+          <a-animation attribute="rotation" to="0 0 360" dur="10000" fill="forwards" repeat="indefinite"></a-animation>
+
+              <a-mouseenter target="#desertgoldinfo" visible="true"></a-mouseenter>
+              <a-mouseleave target="#desertgoldinfo" visible="false"></a-mouseleave>
+      </a-image></a-entity>
+
+      <a-image src="img/desertgoldinfo.png" id="desertgoldinfo" width="13" height="8" position="-12 3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible="false"></a-image>
+
+      <!-- primrose info -->
+
+        <a-entity><a-image src="img/highlighter.png" id="primrosetrigger" width="3" height="3" position=".5 -3.5 8" rotation="10 130 0"
+            scale=".5 .5 .5"
+            opacity="1"
+            visible="false">
+
+            <a-animation attribute="rotation" to="0 0 360" dur="10000" fill="forwards" repeat="indefinite"></a-animation>
+
+              <a-mouseenter target="#primroseinfo" visible="true"></a-mouseenter>
+              <a-mouseleave target="#primroseinfo" visible="false"></a-mouseleave>
+      </a-image></a-entity>
+
+      <a-image src="img/primroseinfo.png" id="primroseinfo" width="13" height="8" position="-5 3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible="false"></a-image>
+
+
+    </a-scene>
+
+      <script>
+
+        // var hidebutton = document.querySelector('#hide');
+        var welcome = document.querySelector('#title');
+
+        var rockToggle = document.querySelector('#rock');
+        var above = document.querySelector('#above');
+        var desertgoldtrigger = document.querySelector('#desertgoldtrigger');
+        var primrosetrigger = document.querySelector('#primrosetrigger');
+        var back = document.querySelector('#back');
+
+
+
+        // function titleScreen() {
+        //   hidebutton.addEventListener('click', function () {
+        //       welcome.setAttribute('visible','false');
+        //       hide.setAttribute('visible','false');
+
+        //     )}
+
+        // }
+
+        function changeToRockFromHome() {
+          above.setAttribute('src', 'video/shot13.webm');
+          rockToggle.setAttribute('visible', 'false');
+          desertgoldtrigger.setAttribute('scale', '0 0 0');
+          primrosetrigger.setAttribute('scale', '1 1 1');
+          back.setAttribute('visible','true');
+          welcome.setAttribute('visible','false');
+        }
+
+        function changeToHomeFromRock() {
+          above.setAttribute('src', 'video/shot8.webm');
+          rockToggle.setAttribute('visible', 'true');
+          desertgoldtrigger.setAttribute('scale','1 1 1');
+          primrosetrigger.setAttribute('scale', '0 0 0');
+          back.setAttribute('visible','false');
+        }
+
+//hover over MORE replaces ABOVE with SHOT13 below videosphere and change the icon to go back to ABOVE button. Should it be hide button and show new button? Probably.
+        rockToggle.addEventListener('click', changeToRockFromHome);
+
+//backbutton
+
+        back.addEventListener('click', changeToHomeFromRock);
+
+//hotspot for information
+        // desertgoldtrigger.addEventListener('click', function () {
+        //   desertgoldtrigger.setAttribute('opacity','0.8');
+        //   desertgoldinfo.setAttribute('visible','true');
+        // })
+
+
+
+
+      </script>
+
+
+
+
+
+
+</body>

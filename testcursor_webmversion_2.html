@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>El Niño brings early blooms to Death Valley</title>
+    <meta name="description" content="Video Sphere — A-Frame">
+   <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
+        
+
+  </head>
+  <body>
+    <a-scene>
+
+
+      <a-entity camera="" look-controls="enabled: true" wasd-controls="enabled: true" rotation="-30 -270 60" position="0 0 0">
+        <a-entity 
+        position="0 0 -0.5" 
+        geometry="primitive: ring; radiusOuter: 0.010; radiusInner: 0.007" 
+        material="color: #4CC3D9; shader: flat; transparent: true; opacity: 0.5" 
+        cursor="fuse: true; maxDistance: 500; timeout: 1000" raycaster=""></a-entity>
+      </a-entity>
+
+      <a-videosphere src="shot8.webm" id="above" autoplay="true" loop="true" rotation="0 -40 0"></a-videosphere>
+
+      <a-image src="rocksperspective.png" id="more" width="2" height="1.25" position="-5 -1.5 -5" rotation="0 30 0"  scale="1 1 1" visible="true"></a-image>
+
+      <a-image src="above.png" id="back" width="2" height="1.25" position="2 -1.5 -5" rotation="-5 0 0"  scale="1 1 1" visible="false"></a-image>
+
+      <a-entity><a-image src="highlighter.png" id="desertgoldtrigger" width="3" height="3" position="-11 -3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible ="true">
+              <a-animation attribute="rotation" to="0 0 360" dur="10000" fill="forwards" repeat="indefinite"></a-animation>
+              <a-mouseenter target="#desertgoldinfo" visible="true"></a-mouseenter>
+              <a-mouseleave target="#desertgoldinfo" visible="false"></a-mouseleave>
+      </a-image></a-entity>
+
+
+       <a-entity><a-image src="highlighter.png" id="primrosetrigger" width="3" height="3" position="-21 -3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible ="true">
+              <a-animation attribute="rotation" to="0 0 360" dur="10000" fill="forwards" repeat="indefinite"></a-animation>
+              <a-mouseenter target="#primroseinfo" visible="true"></a-mouseenter>
+              <a-mouseleave target="#primroseinfo" visible="false"></a-mouseleave>
+      </a-image></a-entity>
+
+      <a-image src="desertgoldinfo.png" id="desertgoldinfo" width="13" height="8" position="-12 3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible="false"></a-image>
+
+      <a-image src="primroseinfo.png" id="primroseinfo" width="13" height="8" position="-12 3 8" rotation="10 130 0"  scale="1 1 1" opacity="1" visible="false"></a-image>
+
+
+    </a-scene>
+
+      <script>
+
+   
+        var more = document.querySelector('#more');
+        var above = document.querySelector('#above');
+        var desertgoldtrigger = document.querySelector('#desertgoldtrigger');
+        var back = document.querySelector('#back');
+
+        function moreClick() {
+
+          //repace shot 8 with shot 13
+          above.setAttribute('src', 'shot13.webm');
+          //turn off the button that goes to show 13
+          more.setAttribute('visible', 'false');
+          //turn on button to return to above. show trigger for hotspot here
+          back.setAttribute('visible','true');
+          desertgoldtrigger.setAttribute('visible','false');
+          primrosetrigger.setAttribute('visible','true');
+
+          more.removeEventListener('click', moreClick);
+          more.addEventListener('click', cancelMoreClick);          
+        }
+
+        function cancelMoreClick() {
+          more.removeEventListener('click', moreClick);
+          more.addEventListener('click', moreClick);
+        }
+
+
+          
+//backbutton replace shot 13 with shot 8
+
+        back.addEventListener('click', function () {
+          above.setAttribute('src', 'shot8.webm');
+        })
+
+//hotspot for information
+
+        // desertgoldtrigger.addEventListener('click', function () {
+        //   desertgoldtrigger.setAttribute('opacity','0.7');
+        //   desertgoldinfo.setAttribute('visible','true');
+        // })
+//says replace click with moreClick
+        // function resetInfobox() {
+        //   desertgoldtrigger.removeEventListener('click', moreClick);
+
+        // }
+
+
+
+
+
+
+      </script>
+
+
+
+
+
+
+</body>
